@@ -1,0 +1,163 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  @apply bg-white text-navy-900 font-sans antialiased;
+}
+/* Animated gradient mesh */
+.mesh-bg {
+  background-color: #1659B6;
+  background-image:
+    radial-gradient(at 12% 18%, rgba(73, 223, 203, 0.8) 0px, transparent 52%),
+    radial-gradient(at 88% 8%, rgba(99, 191, 238, 0.85) 0px, transparent 52%),
+    radial-gradient(at 72% 88%, rgba(85, 187, 246, 0.5) 0px, transparent 50%),
+    radial-gradient(at 8% 92%, rgba(27, 106, 218, 0.9) 0px, transparent 50%);
+  background-size: 170% 170%;
+  animation: mesh 24s ease-in-out infinite alternate;
+}
+@keyframes mesh {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 40%; }
+  100% { background-position: 30% 100%; }
+}
+.grid-lines {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%);
+}
+/* Highlighted words */
+.text-highlight,
+.text-highlight-dark {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.08em;
+}
+.text-highlight { background-image: linear-gradient(95deg, #FFF6BF 0%, #FFD76A 55%, #7DF3E4 100%); }
+.text-highlight-dark { background-image: linear-gradient(95deg, #1A66D1 0%, #26D9C1 100%); }
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #CCD8FF;
+}
+/* Gradient borders */
+.gradient-border,
+.gradient-border-light,
+.gradient-border-interactive {
+  position: relative;
+}
+.gradient-border::before,
+.gradient-border-light::before,
+.gradient-border-interactive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.gradient-border::before {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.15) 40%, rgba(255, 255, 255, 0.1) 60%, rgba(255, 215, 106, 0.6));
+}
+.gradient-border-light::before {
+  background: linear-gradient(140deg, #CCD8FF, #E6ECFF 50%, #C8F5EE);
+}
+.gradient-border-interactive::after {
+  background: linear-gradient(140deg, #25CDBB, #FFD76A 50%, #4F74F5);
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.gradient-border-interactive:hover::after,
+.gradient-border-interactive:focus-visible::after {
+  opacity: 1;
+}
+.glass {
+  background-color: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 60px -30px rgba(22, 35, 107, 0.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mesh-bg { animation: none; }
+}
+
+/* Light hero + header (white background with soft colour blobs, dark text) */
+.mesh-light {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(at 12% 8%, rgba(90, 226, 208, 0.24) 0px, transparent 50%),
+    radial-gradient(at 92% 14%, rgba(73, 140, 233, 0.18) 0px, transparent 50%),
+    radial-gradient(at 72% 96%, rgba(110, 208, 247, 0.22) 0px, transparent 50%),
+    radial-gradient(at 6% 90%, rgba(73, 140, 233, 0.1) 0px, transparent 50%);
+}
+.hero-light.text-white,
+.hero-light .text-white { color: theme('colors.navy.950'); }
+.hero-light [class*="text-white/"] { color: theme('colors.navy.600'); }
+.hero-light [class*="border-white/"] { border-color: theme('colors.navy.100'); }
+.hero-light .text-teal-300,
+.hero-light .text-teal-200 { color: theme('colors.teal.600'); }
+.hero-light .text-highlight { background-image: linear-gradient(95deg, theme('colors.navy.600') 0%, theme('colors.teal.500') 100%); }
+.hero-light .glass { background-color: rgba(255, 255, 255, 0.8); box-shadow: 0 30px 60px -30px rgba(25, 100, 204, 0.25); }
+.hero-light .gradient-border::before { background: linear-gradient(140deg, theme('colors.navy.200'), rgba(255,255,255,0.9) 45%, theme('colors.teal.200')); }
+.hero-light .grid-lines {
+  background-image:
+    linear-gradient(rgba(25, 100, 204, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(25, 100, 204, 0.06) 1px, transparent 1px);
+}
+.hero-light input::placeholder { color: theme('colors.navy.400'); }
+
+/* Arabic / right-to-left */
+[dir="rtl"] body,
+[dir="rtl"] .font-sans,
+[dir="rtl"] .font-display,
+[dir="rtl"] .font-serif {
+  font-family: "Cairo", "Segoe UI", Tahoma, system-ui, sans-serif !important;
+}
+[dir="rtl"] * { letter-spacing: 0 !important; }
+[dir="rtl"] .font-serif,
+[dir="rtl"] .italic { font-style: normal !important; }
+[dir="rtl"] h1, [dir="rtl"] h2 { line-height: 1.25 !important; }
+[dir="rtl"] .animate-marquee { direction: ltr; }
+[dir="rtl"] .lucide-arrow-right { transform: scaleX(-1); }
+[dir="rtl"] main h1 { font-size: clamp(2.4rem, 5.2vw, 4.4rem) !important; }
+[dir="rtl"] main h2 { font-size: clamp(1.9rem, 3.6vw, 3.2rem) !important; }
+[dir="rtl"] a[href^="tel:"] { direction: ltr; unicode-bidi: isolate; display: block; text-align: right; }
+[dir="rtl"] span.block.font-display { direction: ltr; text-align: center; }
+@media (min-width: 640px) {
+  [dir="rtl"] span.block.font-display { text-align: right; }
+}
+
+/* Approval cards in the hero: each one has its own colour */
+.hero-light .glass.card-tone-a { background-image: linear-gradient(135deg, #1A66D1, #0D3368); background-color: transparent; box-shadow: 0 30px 60px -28px rgba(13, 51, 104, 0.55); }
+.hero-light .glass.card-tone-b { background-image: linear-gradient(135deg, #14B8A6, #0E7490); background-color: transparent; box-shadow: 0 30px 60px -28px rgba(14, 116, 144, 0.55); }
+.hero-light .card-tone-a .text-white, .hero-light .card-tone-b .text-white { color: #ffffff; }
+.hero-light .card-tone-a [class*="text-white/"], .hero-light .card-tone-b [class*="text-white/"] { color: rgba(255, 255, 255, 0.88); }
+.hero-light .card-tone-a [class*="border-white/"], .hero-light .card-tone-b [class*="border-white/"] { border-color: rgba(255, 255, 255, 0.28); }
+.hero-light .card-tone-a .text-teal-200, .hero-light .card-tone-b .text-teal-200 { color: #ffffff; }
+.hero-light .card-tone-a .bg-teal-300, .hero-light .card-tone-b .bg-teal-300 { background-color: rgba(255, 255, 255, 0.9); }
+.hero-light .card-tone-a [class*="bg-teal-400/"], .hero-light .card-tone-b [class*="bg-teal-400/"] { background-color: rgba(255, 255, 255, 0.2); }
+
+/* Categories strip: darker than the hero */
+.hero-light .strip-dark { background-color: theme("colors.navy.900"); }
+.hero-light .strip-dark [class*="text-white/"] { color: rgba(255, 255, 255, 0.92); }
+
+/* Categories strip on the Products page: a lighter blue */
+.hero-light .strip-mid { background-color: theme("colors.navy.600"); }
+.hero-light .strip-mid [class*="text-white/"] { color: rgba(255, 255, 255, 0.95); }
